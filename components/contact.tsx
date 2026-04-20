@@ -70,7 +70,7 @@ export function Contact() {
             transition={{ delay: 0.2, type: "spring" }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6"
           >
-            <span className="text-primary font-mono text-sm">04. What&apos;s Next?</span>
+            <span className="text-primary font-mono text-sm">07. What&apos;s Next?</span>
           </motion.div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Get In Touch

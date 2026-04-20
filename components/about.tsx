@@ -2,29 +2,15 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, BookOpen, Target, Zap } from "lucide-react";
-
-const skills = [
-  { name: "Python", level: 90, category: "Languages" },
-  { name: "Machine Learning", level: 85, category: "AI/ML" },
-  { name: "Deep Learning", level: 80, category: "AI/ML" },
-  { name: "TensorFlow", level: 75, category: "Frameworks" },
-  { name: "PyTorch", level: 70, category: "Frameworks" },
-  { name: "Scikit-learn", level: 85, category: "Libraries" },
-  { name: "Pandas", level: 90, category: "Libraries" },
-  { name: "NumPy", level: 90, category: "Libraries" },
-  { name: "Data Analytics", level: 85, category: "Skills" },
-  { name: "Streamlit", level: 80, category: "Frameworks" },
-  { name: "SQL", level: 75, category: "Languages" },
-  { name: "Git", level: 80, category: "Tools" },
-];
+import { GraduationCap, BookOpen, Target, Zap, MapPin, Calendar, Award } from "lucide-react";
 
 const interests = [
   "Applied Machine Learning",
-  "Healthcare AI & Behavioral Analytics",
+  "Healthcare AI",
+  "Behavioral Analytics",
   "Predictive Modeling",
-  "Data-Driven Decision Systems",
-  "End-to-End ML Pipelines",
+  "Data-Driven Systems",
+  "Deep Learning",
 ];
 
 const learningItems = [
@@ -32,6 +18,13 @@ const learningItems = [
   { text: "Model evaluation & validation techniques", icon: Target },
   { text: "MLOps and ML deployment workflows", icon: BookOpen },
   { text: "Natural Language Processing (NLP)", icon: GraduationCap },
+];
+
+const highlights = [
+  { icon: GraduationCap, label: "Education", value: "Software Engineering @ SSUET" },
+  { icon: Calendar, label: "Graduating", value: "Class of 2027" },
+  { icon: MapPin, label: "Location", value: "Karachi, Pakistan" },
+  { icon: Award, label: "Focus", value: "Machine Learning & AI" },
 ];
 
 export function About() {
@@ -85,12 +78,11 @@ export function About() {
               variants={itemVariants} 
               className="p-6 bg-card rounded-xl border border-border"
             >
-              <p className="text-muted-foreground leading-relaxed">
-                I&apos;m a Machine Learning enthusiast and Data Analytics practitioner
-                currently pursuing my Software Engineering degree at{" "}
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                I&apos;m a <span className="text-primary font-semibold">Machine Learning enthusiast</span> and 
+                Data Analytics practitioner currently pursuing my Software Engineering degree at{" "}
                 <span className="text-primary font-semibold">SSUET (Class of 2027)</span>. My
-                passion lies in turning research ideas into scalable ML
-                applications that solve real-world problems.
+                passion lies in turning research ideas into scalable ML applications that solve real-world problems.
               </p>
             </motion.div>
 
@@ -101,30 +93,27 @@ export function About() {
               challenging problems with data-driven solutions.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="pt-4">
-              <h3 className="text-foreground font-semibold mb-4 flex items-center gap-2">
-                <span className="w-8 h-0.5 bg-primary" />
-                Currently Learning
-              </h3>
-              <div className="grid gap-3">
-                {learningItems.map((item, index) => (
-                  <motion.div
-                    key={item.text}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-3 p-3 bg-card/50 rounded-lg border border-border/50 hover:border-primary/30 transition-all group"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-4 h-4 text-primary" />
+            {/* Highlights Grid */}
+            <motion.div variants={itemVariants} className="grid grid-cols-2 gap-3">
+              {highlights.map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                  className="p-4 bg-card/50 rounded-xl border border-border/50 group hover:border-primary/30 transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <item.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-                      {item.text}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
+                      <p className="text-sm text-foreground font-medium">{item.value}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
 
             <motion.div variants={itemVariants} className="pt-4">
@@ -138,7 +127,7 @@ export function About() {
                     key={interest}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.8 + index * 0.1 }}
+                    transition={{ delay: 0.5 + index * 0.05 }}
                     whileHover={{ scale: 1.05, y: -2 }}
                     className="px-4 py-2 bg-primary/10 text-primary text-sm rounded-full border border-primary/20 hover:border-primary/50 hover:bg-primary/20 transition-all cursor-default"
                   >
@@ -153,44 +142,58 @@ export function About() {
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="space-y-8"
+            className="space-y-6"
           >
+            {/* Currently Learning */}
             <div className="p-6 bg-card rounded-xl border border-border">
               <h3 className="text-foreground font-semibold mb-6 flex items-center gap-2">
                 <span className="w-8 h-0.5 bg-primary" />
-                Technical Skills
+                Currently Learning
               </h3>
-              <div className="grid grid-cols-1 gap-4">
-                {skills.map((skill, index) => (
+              <div className="grid gap-3">
+                {learningItems.map((item, index) => (
                   <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.4 + index * 0.05 }}
-                    className="group"
+                    key={item.text}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.5 + index * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg border border-border/50 hover:border-primary/30 transition-all group"
                   >
-                    <div className="flex justify-between text-sm mb-1.5">
-                      <span className="text-foreground group-hover:text-primary transition-colors font-medium">
-                        {skill.name}
-                      </span>
-                      <span className="text-primary font-mono text-xs bg-primary/10 px-2 py-0.5 rounded">
-                        {skill.level}%
-                      </span>
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <item.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ delay: 0.6 + index * 0.05, duration: 0.8, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-primary via-primary to-primary/50 rounded-full relative"
-                      >
-                        <span className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 bg-white rounded-full opacity-80" />
-                      </motion.div>
-                    </div>
+                    <span className="text-muted-foreground group-hover:text-foreground transition-colors">
+                      {item.text}
+                    </span>
                   </motion.div>
                 ))}
               </div>
             </div>
+
+            {/* Code Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8 }}
+              className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border border-primary/20"
+            >
+              <p className="text-center text-muted-foreground">
+                <span className="text-primary font-mono text-2xl font-bold">3+</span>
+                <br />
+                <span className="text-sm">ML Projects Completed</span>
+              </p>
+              <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-primary/20">
+                <div className="text-center">
+                  <p className="text-primary font-mono font-bold">2</p>
+                  <p className="text-xs text-muted-foreground">Live Apps</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-primary font-mono font-bold">94%</p>
+                  <p className="text-xs text-muted-foreground">CNN Accuracy</p>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

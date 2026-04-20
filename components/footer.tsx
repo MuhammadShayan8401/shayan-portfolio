@@ -80,17 +80,23 @@ export function Footer() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            {["About", "Projects", "Contact"].map((item) => (
+            {[
+              { name: "About", id: "about" },
+              { name: "Projects", id: "projects" },
+              { name: "CNN", id: "cnn-work" },
+              { name: "Skills", id: "skills" },
+              { name: "Contact", id: "contact" },
+            ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.name}
+                href={`#${item.id}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="text-muted-foreground hover:text-primary transition-colors font-mono"
               >
-                {item}
+                {item.name}
               </a>
             ))}
           </motion.div>

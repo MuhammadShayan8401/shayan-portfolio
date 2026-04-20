@@ -8,6 +8,8 @@ const navItems = [
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
+  { name: "CNN", href: "#cnn-work" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -121,16 +123,15 @@ export function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="/Muhammad_Shayan_Resume.pdf"
-                download
+                href="mailto:m.shayan.8401@gmail.com"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.6 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 border border-primary text-primary rounded hover:bg-primary/10 transition-colors font-mono text-sm"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded hover:opacity-90 transition-colors font-mono text-sm"
               >
-                Resume
+                Hire Me
               </motion.a>
             </div>
 
@@ -216,15 +217,14 @@ export function Navbar() {
                   </motion.a>
                 ))}
                 <motion.a
-                  href="/Muhammad_Shayan_Resume.pdf"
-                  download
+                  href="mailto:m.shayan.8401@gmail.com"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 50 }}
-                  transition={{ delay: 0.4 }}
-                  className="mt-4 px-6 py-3 border border-primary text-primary rounded hover:bg-primary/10 transition-colors font-mono"
+                  transition={{ delay: 0.6 }}
+                  className="mt-4 px-6 py-3 bg-primary text-primary-foreground rounded hover:opacity-90 transition-colors font-mono"
                 >
-                  Resume
+                  Hire Me
                 </motion.a>
 
                 <motion.div 

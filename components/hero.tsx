@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { Github, Linkedin, Mail, Code2, ArrowDown, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Code2, ArrowDown, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const socialLinks = [
@@ -227,16 +227,17 @@ export function Hero() {
               Get In Touch
               <Mail className="w-4 h-4" />
             </motion.a>
-            <motion.a
-              href="/Muhammad_Shayan_Resume.pdf"
-              download
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground rounded-lg hover:border-primary hover:text-primary transition-colors font-medium"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
+              className="flex items-center gap-2 px-4 py-2 bg-card/50 border border-border rounded-lg text-sm"
             >
-              <Download className="w-4 h-4" />
-              Resume
-            </motion.a>
+              <FileText className="w-4 h-4 text-primary" />
+              <span className="text-muted-foreground">
+                Resume? <a href="mailto:m.shayan.8401@gmail.com" className="text-primary hover:underline">Email me</a>
+              </span>
+            </motion.div>
           </motion.div>
 
           {/* Social Links */}
