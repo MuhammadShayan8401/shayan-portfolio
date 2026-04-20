@@ -1,156 +1,167 @@
 "use client";
 
-import { Github, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Github, ExternalLink, ChevronRight, Brain, TrendingUp, CreditCard } from "lucide-react";
 
 const projects = [
   {
     title: "Pneumonia Detection CNN",
     description:
-      "A Deep Learning-based web application that detects Pneumonia from chest X-ray images using a Convolutional Neural Network (CNN). Built to assist healthcare professionals in rapid diagnosis.",
+      "A Deep Learning-based web application that detects Pneumonia from chest X-ray images using a Convolutional Neural Network (CNN). Built to assist healthcare professionals in rapid diagnosis with high accuracy predictions.",
     tech: ["Python", "TensorFlow", "CNN", "Deep Learning", "Medical Imaging"],
     github: "https://github.com/MuhammadShayan8401/pneumonia-detection-cnn",
     live: null,
-    featured: true,
+    icon: Brain,
+    color: "from-rose-500/20 to-rose-500/5",
+    borderColor: "group-hover:border-rose-500/50",
   },
   {
     title: "Insurance Claim Prediction",
     description:
-      "Predicts medical insurance claim charges based on personal attributes such as age, BMI, smoking status, and region using a Linear Regression model. Features an interactive Streamlit dashboard for visualization and prediction.",
+      "Predicts medical insurance claim charges based on personal attributes such as age, BMI, smoking status, and region using a Linear Regression model. Features an interactive Streamlit dashboard for visualization and real-time prediction.",
     tech: ["Python", "Linear Regression", "Streamlit", "Data Visualization", "Pandas"],
     github: "https://github.com/MuhammadShayan8401/insurance-claim-prediction",
     live: "https://insurance-claim-prediction-hjne3ngt7kim52ym9gxxb4.streamlit.app/",
-    featured: true,
+    icon: TrendingUp,
+    color: "from-emerald-500/20 to-emerald-500/5",
+    borderColor: "group-hover:border-emerald-500/50",
   },
   {
     title: "Credit Risk Prediction",
     description:
-      "Predicts whether a loan applicant is likely to default using machine learning. Provides an interactive web-based dashboard for analysis and prediction to help financial institutions make informed decisions.",
+      "Predicts whether a loan applicant is likely to default using machine learning classification algorithms. Provides an interactive web-based dashboard for analysis and prediction to help financial institutions make informed decisions.",
     tech: ["Python", "Machine Learning", "Streamlit", "Risk Analysis", "Classification"],
     github: "https://github.com/MuhammadShayan8401/Credit-Risk-Prediction",
     live: "https://credit-risk-prediction-clykmamzbui8x3takdrma5.streamlit.app/",
-    featured: true,
+    icon: CreditCard,
+    color: "from-blue-500/20 to-blue-500/5",
+    borderColor: "group-hover:border-blue-500/50",
   },
 ];
 
 export function Projects() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24">
+    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24" ref={ref}>
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-4 mb-12">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-4 mb-12"
+        >
           <h2 className="text-2xl md:text-3xl font-bold text-foreground">
             <span className="text-primary font-mono mr-2">03.</span>
             Featured Projects
           </h2>
           <div className="h-px flex-1 bg-border max-w-sm" />
-        </div>
+        </motion.div>
 
-        <div className="space-y-24">
+        <div className="space-y-8">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={project.title}
-              className={`relative grid lg:grid-cols-12 gap-4 items-center ${
-                index % 2 === 1 ? "lg:text-right" : ""
-              }`}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="group relative"
             >
-              {/* Project Image/Visual Placeholder */}
-              <div
-                className={`lg:col-span-7 ${
-                  index % 2 === 1 ? "lg:col-start-6" : ""
-                } hidden lg:block`}
-              >
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-primary/20 rounded-lg group-hover:bg-transparent transition-all duration-300" />
-                  <div className="aspect-video bg-secondary rounded-lg border border-border overflow-hidden">
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-transparent">
-                      <div className="text-center p-8">
-                        <span className="text-5xl block mb-4">
-                          {index === 0 ? "🩺" : index === 1 ? "📈" : "💳"}
-                        </span>
-                        <span className="text-muted-foreground font-mono text-sm">
-                          {project.tech[0]}
-                        </span>
-                      </div>
+              <div className={`relative p-6 md:p-8 rounded-xl bg-card border border-border ${project.borderColor} transition-all duration-300 hover:shadow-xl overflow-hidden`}>
+                {/* Background gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                
+                <div className="relative z-10 grid md:grid-cols-12 gap-6 items-center">
+                  {/* Icon */}
+                  <div className="md:col-span-2 flex justify-center md:justify-start">
+                    <motion.div
+                      animate={hoveredIndex === index ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center"
+                    >
+                      <project.icon className="w-8 h-8 text-primary" />
+                    </motion.div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="md:col-span-7 space-y-4">
+                    <div>
+                      <p className="text-primary font-mono text-xs mb-1">Featured Project</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
                     </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-1 bg-secondary text-secondary-foreground text-xs rounded-md font-mono"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Links */}
+                  <div className="md:col-span-3 flex md:flex-col items-center md:items-end gap-4">
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg transition-colors text-sm"
+                    >
+                      <Github className="w-4 h-4" />
+                      Code
+                    </motion.a>
+                    {project.live && (
+                      <motion.a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity text-sm"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Live Demo
+                      </motion.a>
+                    )}
                   </div>
                 </div>
               </div>
-
-              {/* Project Info */}
-              <div
-                className={`lg:col-span-6 ${
-                  index % 2 === 1
-                    ? "lg:col-start-1 lg:row-start-1"
-                    : "lg:col-start-6"
-                } relative z-10`}
-              >
-                <p className="text-primary font-mono text-sm mb-2">
-                  Featured Project
-                </p>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  {project.title}
-                </h3>
-                <div className="bg-card p-6 rounded-lg shadow-xl border border-border mb-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-                <div
-                  className={`flex flex-wrap gap-2 mb-4 ${
-                    index % 2 === 1 ? "lg:justify-end" : ""
-                  }`}
-                >
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-muted-foreground font-mono text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div
-                  className={`flex items-center gap-4 ${
-                    index % 2 === 1 ? "lg:justify-end" : ""
-                  }`}
-                >
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    aria-label="GitHub Repository"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      aria-label="Live Demo"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Other Projects Link */}
-        <div className="mt-16 text-center">
+        {/* View More */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8 }}
+          className="mt-12 text-center"
+        >
           <a
             href="https://github.com/MuhammadShayan8401"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors font-mono text-sm"
+            className="group inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-mono"
           >
-            View More on GitHub
-            <ExternalLink className="w-4 h-4" />
+            View More Projects on GitHub
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
