@@ -99,7 +99,7 @@ export function TechStack() {
           className="flex items-center gap-4 mb-4"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-            <span className="text-primary font-mono mr-2">06.</span>
+            <span className="text-primary font-mono mr-2">04.</span>
             Tech Stack
           </h2>
           <div className="h-px flex-1 bg-border max-w-sm" />

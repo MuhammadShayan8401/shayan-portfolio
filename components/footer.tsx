@@ -83,7 +83,6 @@ export function Footer() {
             {[
               { name: "About", id: "about" },
               { name: "Projects", id: "projects" },
-              { name: "CNN", id: "cnn-work" },
               { name: "Skills", id: "skills" },
               { name: "Contact", id: "contact" },
             ].map((item) => (

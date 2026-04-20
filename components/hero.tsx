@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { Github, Linkedin, Mail, Code2, ArrowDown, FileText } from "lucide-react";
-import { useEffect, useState } from "react";
+import { motion, useMotionValue, useTransform, animate, useSpring } from "framer-motion";
+import { Github, Linkedin, Mail, Code2, ArrowDown, FileText, Sparkles } from "lucide-react";
+import { useEffect, useState, useCallback } from "react";
 
 const socialLinks = [
   {

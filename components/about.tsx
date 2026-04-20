@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { GraduationCap, BookOpen, Target, Zap, MapPin, Calendar, Award } from "lucide-react";
+import { useRef, useState } from "react";
+import { GraduationCap, BookOpen, Target, Zap, MapPin, Calendar, Award, Brain, Layers, Network, ChevronRight } from "lucide-react";
 
 const interests = [
   "Applied Machine Learning",
@@ -14,10 +14,30 @@ const interests = [
 ];
 
 const learningItems = [
-  { text: "Advanced ML algorithms & model optimization", icon: Zap },
-  { text: "Model evaluation & validation techniques", icon: Target },
-  { text: "MLOps and ML deployment workflows", icon: BookOpen },
-  { text: "Natural Language Processing (NLP)", icon: GraduationCap },
+  { 
+    text: "Convolutional Neural Networks (CNNs)", 
+    icon: Brain,
+    description: "Image classification & medical imaging",
+    color: "from-rose-500 to-pink-500"
+  },
+  { 
+    text: "Natural Language Processing (NLP)", 
+    icon: Network,
+    description: "Text analysis & sentiment detection",
+    color: "from-blue-500 to-cyan-500"
+  },
+  { 
+    text: "Advanced ML Model Optimization", 
+    icon: Zap,
+    description: "Hyperparameter tuning & performance",
+    color: "from-amber-500 to-orange-500"
+  },
+  { 
+    text: "MLOps & Deployment Workflows", 
+    icon: Layers,
+    description: "Production-ready ML pipelines",
+    color: "from-emerald-500 to-green-500"
+  },
 ];
 
 const highlights = [
@@ -30,6 +50,7 @@ const highlights = [
 export function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [expandedItem, setExpandedItem] = useState<number | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -51,6 +72,7 @@ export function About() {
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 right-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto">
@@ -76,9 +98,15 @@ export function About() {
           >
             <motion.div 
               variants={itemVariants} 
-              className="p-6 bg-card rounded-xl border border-border"
+              className="p-6 bg-card rounded-xl border border-border relative overflow-hidden group"
             >
-              <p className="text-muted-foreground leading-relaxed text-lg">
+              {/* Animated border glow */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0"
+                animate={{ x: ["-100%", "100%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              <p className="text-muted-foreground leading-relaxed text-lg relative z-10">
                 I&apos;m a <span className="text-primary font-semibold">Machine Learning enthusiast</span> and 
                 Data Analytics practitioner currently pursuing my Software Engineering degree at{" "}
                 <span className="text-primary font-semibold">SSUET (Class of 2027)</span>. My
@@ -101,12 +129,16 @@ export function About() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: 0.3 + index * 0.1 }}
-                  className="p-4 bg-card/50 rounded-xl border border-border/50 group hover:border-primary/30 transition-all"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  className="p-4 bg-card/50 rounded-xl border border-border/50 group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-default"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <motion.div 
+                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"
+                      whileHover={{ rotate: 10 }}
+                    >
                       <item.icon className="w-5 h-5 text-primary" />
-                    </div>
+                    </motion.div>
                     <div>
                       <p className="text-xs text-muted-foreground">{item.label}</p>
                       <p className="text-sm text-foreground font-medium">{item.value}</p>
@@ -144,7 +176,7 @@ export function About() {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="space-y-6"
           >
-            {/* Currently Learning */}
+            {/* Currently Learning - Enhanced */}
             <div className="p-6 bg-card rounded-xl border border-border">
               <h3 className="text-foreground font-semibold mb-6 flex items-center gap-2">
                 <span className="w-8 h-0.5 bg-primary" />
@@ -157,41 +189,111 @@ export function About() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.5 + index * 0.1 }}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg border border-border/50 hover:border-primary/30 transition-all group"
+                    onClick={() => setExpandedItem(expandedItem === index ? null : index)}
+                    className="group cursor-pointer"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-muted-foreground group-hover:text-foreground transition-colors">
-                      {item.text}
-                    </span>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      className={`p-4 bg-secondary/50 rounded-xl border border-border/50 hover:border-primary/30 transition-all relative overflow-hidden ${
+                        expandedItem === index ? "border-primary/50" : ""
+                      }`}
+                    >
+                      {/* Gradient accent */}
+                      <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${item.color}`} />
+                      
+                      <div className="flex items-center gap-3 pl-2">
+                        <motion.div 
+                          className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          <item.icon className="w-5 h-5 text-white" />
+                        </motion.div>
+                        <div className="flex-1">
+                          <span className="text-foreground font-medium block">
+                            {item.text}
+                          </span>
+                          <motion.p
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ 
+                              height: expandedItem === index ? "auto" : 0,
+                              opacity: expandedItem === index ? 1 : 0
+                            }}
+                            className="text-muted-foreground text-sm mt-1 overflow-hidden"
+                          >
+                            {item.description}
+                          </motion.p>
+                        </div>
+                        <ChevronRight 
+                          className={`w-4 h-4 text-muted-foreground transition-transform ${
+                            expandedItem === index ? "rotate-90" : ""
+                          }`}
+                        />
+                      </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Code Stats */}
+            {/* Code Stats - Enhanced */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.8 }}
-              className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border border-primary/20"
+              className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border border-primary/20 relative overflow-hidden"
             >
-              <p className="text-center text-muted-foreground">
-                <span className="text-primary font-mono text-2xl font-bold">3+</span>
+              {/* Animated particles */}
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-primary/30 rounded-full"
+                  style={{ left: `${20 + i * 15}%`, top: "20%" }}
+                  animate={{
+                    y: [0, 50, 0],
+                    opacity: [0.3, 0.8, 0.3],
+                  }}
+                  transition={{
+                    duration: 2 + i * 0.5,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
+              
+              <p className="text-center text-muted-foreground relative z-10">
+                <motion.span 
+                  className="text-primary font-mono text-3xl font-bold"
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ delay: 0.9, type: "spring" }}
+                >
+                  3+
+                </motion.span>
                 <br />
                 <span className="text-sm">ML Projects Completed</span>
               </p>
-              <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-primary/20">
-                <div className="text-center">
-                  <p className="text-primary font-mono font-bold">2</p>
+              <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-primary/20 relative z-10">
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <p className="text-primary font-mono font-bold text-xl">2</p>
                   <p className="text-xs text-muted-foreground">Live Apps</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-primary font-mono font-bold">94%</p>
+                </motion.div>
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <p className="text-primary font-mono font-bold text-xl">94%</p>
                   <p className="text-xs text-muted-foreground">CNN Accuracy</p>
-                </div>
+                </motion.div>
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <p className="text-primary font-mono font-bold text-xl">100+</p>
+                  <p className="text-xs text-muted-foreground">LeetCode</p>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>
