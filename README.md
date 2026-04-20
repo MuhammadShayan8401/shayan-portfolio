@@ -1,35 +1,143 @@
-# shayan-portfolio
+# 🌐 Shayan Portfolio
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+A modern, responsive, and production-ready personal portfolio built with Next.js to showcase my skills, projects, and experience as a software developer.
 
-## Built with v0
+---
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+## 🔗 Live Demo
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_Lt1x9QYlHwxX3lGJt1OK6hakSIWG)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge\&logo=vercel)](https://shayan-portfolio-eight.vercel.app/)
 
-## Getting Started
+---
 
-First, run the development server:
+## 📊 Project Status
+
+![GitHub repo size](https://img.shields.io/github/repo-size/MuhammadShayan8401/shayan-portfolio)
+![GitHub last commit](https://img.shields.io/github/last-commit/MuhammadShayan8401/shayan-portfolio)
+![GitHub stars](https://img.shields.io/github/stars/MuhammadShayan8401/shayan-portfolio?style=social)
+![GitHub forks](https://img.shields.io/github/forks/MuhammadShayan8401/shayan-portfolio?style=social)
+
+---
+
+## 👨‍💻 About Me
+
+I am **Muhammad Shayan Ahmed**, a passionate software developer focused on building scalable, efficient, and user-friendly web applications. This portfolio represents my work, skills, and journey in software development.
+
+---
+
+## 📸 Preview
+
+### Home Page
+
+![Home](./screenshots/home.png)
+
+### Projects
+
+![Projects](./screenshots/projects.png)
+
+### About Me
+
+![About Me](./screenshots/aboutme.png)
+
+### Contact
+
+![Contact](./screenshots/contactme.png)
+
+---
+
+## ⚙️ Tech Stack
+
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge\&logo=next.js)
+![React](https://img.shields.io/badge/React-blue?style=for-the-badge\&logo=react)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge\&logo=javascript)
+![TypeScript](https://img.shields.io/badge/TypeScript-blue?style=for-the-badge\&logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge\&logo=tailwind-css)
+
+---
+
+## 🚀 Features
+
+* Fully responsive design (mobile, tablet, desktop)
+* Modern UI/UX with clean layout
+* Smooth navigation between sections
+* Project showcase with structured layout
+* Contact section for easy communication
+* Optimized performance for fast loading
+* SEO-friendly structure
+
+---
+
+## 📂 Project Structure
+
+```
+shayan-portfolio/
+├── app/
+├── components/
+├── public/
+├── screenshots/
+├── README.md
+```
+
+---
+
+## 🛠️ Installation & Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/MuhammadShayan8401/shayan-portfolio.git
+```
+
+Navigate to project folder:
+
+```bash
+cd shayan-portfolio
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-## Learn More
+---
 
-To learn more, take a look at the following resources:
+## 🚀 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+This project is deployed using Vercel with automatic CI/CD integration from GitHub.
 
-<a href="https://v0.app/chat/api/kiro/clone/MuhammadShayan8401/shayan-portfolio" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+---
+
+## 📈 Future Improvements
+
+* Add dark/light mode toggle
+* Improve animations using Framer Motion
+* Add blog section
+* Enhance SEO optimization
+* Add backend contact form
+
+---
+
+## 📬 Contact
+
+* GitHub: [https://github.com/MuhammadShayan8401](https://github.com/MuhammadShayan8401)
+* LinkedIn: [https://www.linkedin.com/in/muhammad-shayan-ahmed-05b847281/](https://www.linkedin.com/in/muhammad-shayan-ahmed-05b847281/)
+* Portfolio: [https://shayan-portfolio-eight.vercel.app/](https://shayan-portfolio-eight.vercel.app/)
+
+---
+
+## ⭐ Show Your Support
+
+If you like this project, consider giving it a star on GitHub.
