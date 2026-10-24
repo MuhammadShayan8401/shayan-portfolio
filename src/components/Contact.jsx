@@ -99,7 +99,7 @@ export default function Contact() {
               <span className="ci-label">LinkedIn</span>
               <span className="ci-val">
                 <a
-                  href="https://linkedin.com/in/muhammad-shayan-ahmed-05b847281"
+                  href="https://www.linkedin.com/in/muhammad-shayan-ahmed8401"
                   target="_blank"
                   rel="noreferrer"
                 >
