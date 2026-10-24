@@ -45,7 +45,7 @@ export default function Hero() {
               My Approach
             </a>
             <a
-              href="https://linkedin.com/in/muhammad-shayan-ahmed-05b847281"
+              href="https://www.linkedin.com/in/muhammad-shayan-ahmed8401"
               target="_blank"
               rel="noreferrer"
               className="btn-linkedin"
