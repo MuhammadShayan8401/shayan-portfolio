@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg{fill:#1A1612}.fg{fill:#F5F0E8}
+    @media (prefers-color-scheme: dark){.bg{fill:#F5F0E8}.fg{fill:#1A1612}}
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <text class="fg" x="32" y="40" text-anchor="middle" font-family="'Instrument Serif', Georgia, 'Times New Roman', serif" font-size="34">M</text>
+  <rect x="24" y="46" width="16" height="3" rx="1.5" fill="#F0B429"/>
+</svg>
