@@ -13,10 +13,8 @@
 export const testimonials = [
   {
     quote:
-      'Based on this verified completion record, I recommend Muhammad for opportunities aligned with machine learning engineering and applied AI roles.',
+      'I recommend Muhammad for opportunities aligned with machine learning engineering and applied AI roles.',
     name: 'Alen Malkoc',
     role: 'Founder & CEO, FlyRank.ai',
-    link: 'https://internship.flyrank.ai/verify?id=FR-D10-AE20E-8C0A9',
-    linkLabel: 'Verify this letter',
   },
 ]
