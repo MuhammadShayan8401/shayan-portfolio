@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="hero-left">
           <div className="hero-tag" style={{ opacity: 0, animation: 'fadeUp .7s .2s forwards' }}>
             <span className="hero-tag-dot"></span>
-            AI Engineer · Karachi, Pakistan
+            AI/ML Engineer · Karachi, Pakistan
           </div>
 
           <h1 className="hero-h1" style={{ opacity: 0, animation: 'fadeUp .8s .35s forwards' }}>
